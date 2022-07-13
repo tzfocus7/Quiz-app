@@ -149,7 +149,21 @@ function startTimer(time){
 
         if (time < 0){
             clearInterval(counter);
-            timeCount.textContent = "00"
+            timeCount.textContent = "00";
+
+            let correctAns = questions[que_count].answer;
+            for (i = 0; i < option_list.children.length; i++){
+                if (option_list.children[i].textContent == correctAns){
+                    option_list.children[i].setAttribute("class", "option correct");
+                    option_list.children[i].insertAdjacentHTML("beforeend", tickIcon);
+                }
+            }
+
+            for (i = 0; i < option_list.children.length; i++){
+                option_list.children[i].classList.add("disabled");
+            }
+            
+            next_btn.style.display = "block";
         }
     }
 }
